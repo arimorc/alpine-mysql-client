@@ -1,12 +1,12 @@
 # Alpine MySQL Client
 
-[![devel](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml/badge.svg)](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml) ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
+[![devel](https://github.com/arimorc/alpine-mysql-client/actions/workflows/devel.yml/badge.svg)](https://github.com/arimorc/alpine-mysql-client/actions/workflows/devel.yml) ![Docker Image Size](https://img.shields.io/docker/image-size/arimorc/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/arimorc/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/arimorc/alpine-mysql-client.svg)
 
 > [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) (MariaDB Client) for easy **export** and **import** databases using Docker.
 
 _**Note:** If you are looking for a **MySQL 8 Client** then go to [Docker MySQL 8 Client](https://github.com/joseluisq/docker-mysql-client) project._
 
-🐳  View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
+🐳  View on [Docker Hub](https://hub.docker.com/r/airsolution/alpine-mysql-client/)
 
 ## MySQL Client programs
 
@@ -35,7 +35,7 @@ For more details check it out:
 ## Usage
 
 ```sh
-docker run -it --rm joseluisq/alpine-mysql-client mysql --version
+docker run -it --rm airsolution/alpine-mysql-client mysql --version
 # mysql  Ver 15.1 Distrib 10.6.4-MariaDB, for Linux (x86_64) using readline 5.1
 ```
 
@@ -96,7 +96,7 @@ docker run --rm -it \
     --user $(id -u $USER):$(id -g $USER) \
     --volume $PWD:/home/mysql/sample \
     --workdir /home/mysql/sample \
-        joseluisq/alpine-mysql-client:1 \
+        airsolution/alpine-mysql-client:1 \
         mysql_exporter production.env
 
 # Alpine / MySQL Client - Exporter
@@ -124,7 +124,7 @@ version: "3.3"
 
 services:
   exporter:
-    image: joseluisq/alpine-mysql-client:1
+    image: airsolution/alpine-mysql-client:1
     env_file: .env
     command: mysql_exporter
     working_dir: /home/mysql/sample
@@ -175,7 +175,7 @@ docker run --rm -it \
     --user $(id -u $USER):$(id -g $USER) \
     --volume $PWD:/home/mysql/sample \
     --workdir /home/mysql/sample \
-        joseluisq/alpine-mysql-client:1 \
+        airsolution/alpine-mysql-client:1 \
         mysql_importer production.env
 
 # Alpine / MySQL Client - Importer
@@ -188,7 +188,7 @@ docker run --rm -it \
 
 ## Contributions
 
-Feel free to send a [pull request](https://github.com/joseluisq/alpine-mysql-client/pulls) or file some [issue](https://github.com/joseluisq/alpine-mysql-client/issues).
+Feel free to send a [pull request](https://github.com/arimorc/alpine-mysql-client/pulls) or file some [issue](https://github.com/arimorc/alpine-mysql-client/issues).
 
 ## License
 

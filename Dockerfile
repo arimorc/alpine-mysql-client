@@ -19,6 +19,7 @@ ARG USER_HOME_DIR
 ENV USER_NAME=${USER_NAME:-mysql}
 ENV USER_HOME_DIR=${USER_HOME_DIR:-/home/${USER_NAME}}
 
+COPY ./download_enve.sh ./
 RUN set -eux \
     && adduser -h ${USER_HOME_DIR} -s /sbin/nologin -u 1000 -D ${USER_NAME} \
     && apk --no-cache add ca-certificates tzdata mysql-client nano dumb-init \
@@ -26,8 +27,7 @@ RUN set -eux \
     && apk add --virtual build_deps $BUILD_DEPS \
     && cp /usr/bin/envsubst /usr/local/bin/envsubst \
     && apk del build_deps \
-    && wget --quiet -O /tmp/enve.tar.gz \
-        "https://github.com/joseluisq/enve/releases/download/v${ENVE_VERSION}/enve_v${ENVE_VERSION}_linux_amd64.tar.gz" \
+    && /bin/sh ./download_enve.sh ${ENVE_VERSION} \
 	&& tar xzvf /tmp/enve.tar.gz -C /usr/local/bin enve \
 	&& enve -v \
 	&& rm -rf /tmp/enve.tar.gz \
@@ -57,9 +57,9 @@ ENTRYPOINT [ "/usr/bin/dumb-init" ]
 CMD [ "mysql" ]
 
 # Metadata
-LABEL org.opencontainers.image.vendor="Jose Quintana" \
-    org.opencontainers.image.url="https://github.com/joseluisq/alpine-mysql-client" \
+LABEL org.opencontainers.image.vendor="Air Solution" \
+    org.opencontainers.image.url="https://github.com/arimorc/alpine-mysql-client" \
     org.opencontainers.image.title="Alpine / MySQL Client" \
     org.opencontainers.image.description="MySQL client for easy export and import databases using Docker." \
     org.opencontainers.image.version="v${VERSION}" \
-    org.opencontainers.image.documentation="https://github.com/joseluisq/alpine-mysql-client/blob/master/README.md"
+    org.opencontainers.image.documentation="https://github.com/arimorc/alpine-mysql-client/blob/master/README.md"
